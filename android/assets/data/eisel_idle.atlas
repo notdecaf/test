@@ -1,0 +1,12 @@
+
+eisel_idle.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+a
+  rotate: false
+  xy: 1, 1
+  size: 256, 701
+  orig: 256, 701
+  offset: 0, 0
+  index: -1
