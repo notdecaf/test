@@ -14,16 +14,14 @@ public class Color_Jump extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private TextureAtlas eiselIdle; //holds the information for Eisel's idle pose
     private Sprite eisel;           //the sprite for Eisel
-    private int eiselFrame = 1;
-    private String currentEiselKey = new String("a");
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		eiselIdle = new TextureAtlas(Gdx.files.internal("data/eisel_idle.atlas"));
-        AtlasRegion region = eiselIdle.findRegion("a");
+        AtlasRegion region = eiselIdle.findRegion("001");
         eisel = new Sprite(region);
-        eisel.setPosition(0,0);
+        eisel.setPosition(Gdx.graphics.getWidth()/2-eisel.getWidth()/2,0);
 	}
 
     @Override
