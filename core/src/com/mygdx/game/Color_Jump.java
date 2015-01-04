@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -12,22 +13,24 @@ import com.badlogic.gdx.utils.Timer;
 
 public class Color_Jump extends ApplicationAdapter {
 	private SpriteBatch batch;
-	private TextureAtlas eiselIdle; //holds the information for Eisel's idle pose
+	private TextureAtlas eiselWalk; //holds the information for Eisel's idle pose
     private Sprite eisel;           //the sprite for Eisel
+    private Animation animation;
+    private float elapsedTime = 0;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		eiselIdle = new TextureAtlas(Gdx.files.internal("data/eisel_idle.atlas"));
-        AtlasRegion region = eiselIdle.findRegion("001");
-        eisel = new Sprite(region);
-        eisel.setPosition(Gdx.graphics.getWidth()/2-eisel.getWidth()/2,0);
+		//eiselWalk = new TextureAtlas(Gdx.files.internal("data/eisel_idle.atlas"));
+        eiselWalk = new TextureAtlas(Gdx.files.internal("data/eisel_walk.atlas"));
+        animation = new Animation(1/10f, eiselWalk.getRegions());
+        //eisel.setPosition(Gdx.graphics.getWidth()/2-eisel.getWidth()/2,0);
 	}
 
     @Override
     public void dispose(){
         batch.dispose();
-        eiselIdle.dispose();
+        eiselWalk.dispose();
     }
 
     @Override
@@ -36,7 +39,8 @@ public class Color_Jump extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        eisel.draw(batch);
+        elapsedTime+= Gdx.graphics.getDeltaTime();
+        batch.draw(animation.getKeyFrame(elapsedTime,true),0,0);
         batch.end();
     }
 
