@@ -24,11 +24,12 @@ public class Color_Jump extends Game implements ApplicationListener {
 
     private float elapsedTime = 0;
     private int w,h;
-
+	MainScreen mainScreen;
 	@Override
 	public void create () {
         Gdx.app.log("Color Jump", "Created");
-        setScreen(new MainScreen());
+		mainScreen = new MainScreen();
+        setScreen(mainScreen);
 		batch = new SpriteBatch();
 		//eiselTexture = new TextureAtlas(Gdx.files.internal("data/eisel_idle.atlas"));
 //        eiselTexture = new TextureAtlas(Gdx.files.internal("data/eisel_spritesheet.atlas"));
@@ -57,6 +58,7 @@ public class Color_Jump extends Game implements ApplicationListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
+	    mainScreen.render(0);
         //elapsedTime+= Gdx.graphics.getDeltaTime();
         //batch.draw(eiselWalk.getKeyFrame(elapsedTime,true),0,0);
 
