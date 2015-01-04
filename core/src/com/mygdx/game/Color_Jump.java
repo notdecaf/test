@@ -1,40 +1,48 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
 
-public class Color_Jump extends ApplicationAdapter {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Color_Jump extends Game implements ApplicationListener {
 	private SpriteBatch batch;
 	private TextureAtlas eiselTexture; //holds the information for Eisel's idle pose
     private Sprite eisel;           //the sprite for Eisel
     private Animation eiselWalk;
     private Animation eiselIdle;
+
     private float elapsedTime = 0;
-	
+    private int w,h;
+
 	@Override
 	public void create () {
+        Gdx.app.log("Color Jump", "Created");
+        setScreen(new MainScreen());
 		batch = new SpriteBatch();
 		//eiselTexture = new TextureAtlas(Gdx.files.internal("data/eisel_idle.atlas"));
-        eiselTexture = new TextureAtlas(Gdx.files.internal("data/eisel_spritesheet.atlas"));
-        eiselWalk = new Animation(1/10f,
-                (eiselTexture.findRegion("0001")),
-                (eiselTexture.findRegion("0002")),
-                (eiselTexture.findRegion("0003")),
-                (eiselTexture.findRegion("0004")),
-                (eiselTexture.findRegion("0005")),
-                (eiselTexture.findRegion("0006")),
-                (eiselTexture.findRegion("0007")),
-                (eiselTexture.findRegion("0008")));
-        eiselIdle = new Animation(1/10f,(eiselTexture.findRegion("idle")));
-        //eisel.setPosition(Gdx.graphics.getWidth()/2-eisel.getWidth()/2,0);
+//        eiselTexture = new TextureAtlas(Gdx.files.internal("data/eisel_spritesheet.atlas"));
+//        eiselWalk = new Animation(1/10f,
+//                (eiselTexture.findRegion("0001")),
+//                (eiselTexture.findRegion("0002")),
+//                (eiselTexture.findRegion("0003")),
+//                (eiselTexture.findRegion("0004")),
+//                (eiselTexture.findRegion("0005")),
+//                (eiselTexture.findRegion("0006")),
+//                (eiselTexture.findRegion("0007")),
+//                (eiselTexture.findRegion("0008")));
+//        eiselIdle = new Animation(1/10f,(eiselTexture.findRegion("idle")));
+        Gdx.app.log("Color Jump", "Animations set");
 	}
 
     @Override
@@ -49,8 +57,9 @@ public class Color_Jump extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        elapsedTime+= Gdx.graphics.getDeltaTime();
-        batch.draw(animation.getKeyFrame(elapsedTime,true),0,0);
+        //elapsedTime+= Gdx.graphics.getDeltaTime();
+        //batch.draw(eiselWalk.getKeyFrame(elapsedTime,true),0,0);
+
         batch.end();
     }
 
