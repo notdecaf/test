@@ -1,5 +1,5 @@
 
-eisel_walk.png
+eisel_spritesheet.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -18,7 +18,7 @@ repeat: none
   offset: 0, 0
   index: -1
 
-eisel_walk2.png
+eisel_spritesheet2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -37,7 +37,7 @@ repeat: none
   offset: 0, 0
   index: -1
 
-eisel_walk3.png
+eisel_spritesheet3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -56,7 +56,7 @@ repeat: none
   offset: 0, 0
   index: -1
 
-eisel_walk4.png
+eisel_spritesheet4.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -72,5 +72,17 @@ repeat: none
   xy: 503, 1
   size: 500, 800
   orig: 500, 800
+  offset: 0, 0
+  index: -1
+
+eisel_spritesheet5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+idle
+  rotate: false
+  xy: 1, 1
+  size: 256, 701
+  orig: 256, 701
   offset: 0, 0
   index: -1

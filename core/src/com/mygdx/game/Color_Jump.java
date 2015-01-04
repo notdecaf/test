@@ -13,24 +13,34 @@ import com.badlogic.gdx.utils.Timer;
 
 public class Color_Jump extends ApplicationAdapter {
 	private SpriteBatch batch;
-	private TextureAtlas eiselWalk; //holds the information for Eisel's idle pose
+	private TextureAtlas eiselTexture; //holds the information for Eisel's idle pose
     private Sprite eisel;           //the sprite for Eisel
-    private Animation animation;
+    private Animation eiselWalk;
+    private Animation eiselIdle;
     private float elapsedTime = 0;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		//eiselWalk = new TextureAtlas(Gdx.files.internal("data/eisel_idle.atlas"));
-        eiselWalk = new TextureAtlas(Gdx.files.internal("data/eisel_walk.atlas"));
-        animation = new Animation(1/10f, eiselWalk.getRegions());
+		//eiselTexture = new TextureAtlas(Gdx.files.internal("data/eisel_idle.atlas"));
+        eiselTexture = new TextureAtlas(Gdx.files.internal("data/eisel_spritesheet.atlas"));
+        eiselWalk = new Animation(1/10f,
+                (eiselTexture.findRegion("0001")),
+                (eiselTexture.findRegion("0002")),
+                (eiselTexture.findRegion("0003")),
+                (eiselTexture.findRegion("0004")),
+                (eiselTexture.findRegion("0005")),
+                (eiselTexture.findRegion("0006")),
+                (eiselTexture.findRegion("0007")),
+                (eiselTexture.findRegion("0008")));
+        eiselIdle = new Animation(1/10f,(eiselTexture.findRegion("idle")));
         //eisel.setPosition(Gdx.graphics.getWidth()/2-eisel.getWidth()/2,0);
 	}
 
     @Override
     public void dispose(){
         batch.dispose();
-        eiselWalk.dispose();
+        eiselTexture.dispose();
     }
 
     @Override
