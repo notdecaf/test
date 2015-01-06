@@ -10,11 +10,19 @@ import com.badlogic.gdx.graphics.GL20;
 public class MainScreen implements Screen {
     GameWorld world;
     GameRenderer renderer;
+    private float runtime = 0;
 
     public MainScreen(){
         Gdx.app.log("GameScreen", "Attached");
-        world = new GameWorld();
+
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float gameWidth = screenWidth;
+        float gameHeight = screenHeight;
+
+        world = new GameWorld((int)(gameHeight/2));
         renderer = new GameRenderer(world);
+        Gdx.input.setInputProcessor(new InputHandler(world.getEisel()));
     }
 
     @Override
@@ -24,8 +32,9 @@ public class MainScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        runtime += delta;
         world.update(delta);
-        renderer.render();
+        renderer.render(runtime);
     }
 
     @Override

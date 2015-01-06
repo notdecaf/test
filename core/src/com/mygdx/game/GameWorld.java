@@ -8,20 +8,17 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class GameWorld {
 
-    private Rectangle rect = new Rectangle(0,0,500,700);
+    private Eisel eisel;
 
-    public void update(float delta){
-        Gdx.app.log("GameWorld", "update");
-        Gdx.app.log("GameWorld","Width:" + Gdx.graphics.getWidth());
-        Gdx.app.log("GameWorld","Height:" + Gdx.graphics.getHeight());
-        rect.x++;
-        if (rect.x > Gdx.graphics.getWidth()){
-            Gdx.app.log("GameWorld","Moved");
-            rect.x = 0;
-        }
+    public GameWorld(int midPointX){
+        eisel = new Eisel(midPointX,Gdx.graphics.getHeight(),500,700);
     }
 
-    public Rectangle getRect(){
-        return rect;
+    public void update(float delta){
+        eisel.update(delta);
+    }
+
+    public Eisel getEisel(){
+        return eisel;
     }
 }
