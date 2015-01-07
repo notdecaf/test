@@ -29,8 +29,12 @@ public class Eisel {
         position.add(velocity.cpy().scl(delta));
     }
 
+    public boolean isMoving(){
+        return (velocity.x > 0);
+    }
+    
     public void onClick(){
-        position.x += 40;
+        velocity.x += 40;
     }
 
     public float getX(){

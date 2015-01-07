@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -16,6 +17,10 @@ public class GameRenderer {
     private OrthographicCamera cam;
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
+    private Eisel eisel;
+
+    private Animation eiselIdle;
+    private Animation eiselWalk;
 
     private int width = Gdx.graphics.getWidth();
     private int height = Gdx.graphics.getHeight();
@@ -29,11 +34,17 @@ public class GameRenderer {
         batch.setProjectionMatrix(cam.combined);
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(cam.combined);
+        addAssets();
+    }
+
+    private void addAssets(){
+        eisel = world.getEisel();
+        eiselIdle = AssetLoader.eiselIdle;
+        eiselWalk = AssetLoader.eiselWalk;
     }
 
     public void render(float runtime){
         Gdx.app.log("GameRenderer", "Render");
-        Eisel eisel = world.getEisel();
 
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -48,7 +59,13 @@ public class GameRenderer {
         shapeRenderer.end();
 
         batch.begin();
-        batch.draw(AssetLoader.eiselIdle.getKeyFrame(runtime,true),0,0);
+        if (eisel.isMoving()){
+            batch.draw(AssetLoader.eiselWalk.getKeyFrame(runtime,true),0,0);
+        }
+        else {
+            batch.draw(AssetLoader.eiselIdle.getKeyFrame(runtime,true),0,0);
+        }
+
         batch.end();
     }
 }
