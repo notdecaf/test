@@ -28,7 +28,7 @@ public class GameRenderer {
     public GameRenderer(GameWorld world){
         this.world = world;
         cam = new OrthographicCamera();
-        cam.setToOrtho(true,width,height);
+        cam.setToOrtho(true,width*3/2,height*3/2);
 
         batch = new SpriteBatch();
         batch.setProjectionMatrix(cam.combined);
@@ -51,11 +51,11 @@ public class GameRenderer {
 
         shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
-        shapeRenderer.rect(0, 0, width, height);
+        shapeRenderer.rect(0, 0, width*3/2, height*3/2);
         shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
-        shapeRenderer.rect(0,0,width,100);
+        shapeRenderer.rect(0,0,width*3/2,100);
         shapeRenderer.setColor(111 / 255.0f, 186 / 255.0f, 45 / 255.0f, 1);
-        shapeRenderer.rect(0,0,width,50);
+        shapeRenderer.rect(0,0,width*3/2,50);
         shapeRenderer.end();
 
         batch.begin();
