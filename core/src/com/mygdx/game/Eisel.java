@@ -10,7 +10,7 @@ public class Eisel {
     private Vector2 velocity;
     private Vector2 acceleration;
 
-    private int height;
+    private int height = 701;
     private int width;
 
     public Eisel(float x, float y, int height, int width){
@@ -32,7 +32,10 @@ public class Eisel {
     public boolean isMoving(){
         return (velocity.x > 0);
     }
-    
+
+    public void notClick(){
+        velocity.x = 0;
+    }
     public void onClick(){
         velocity.x += 40;
     }

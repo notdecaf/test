@@ -35,7 +35,8 @@ public class InputHandler implements InputProcessor{
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
+        eisel.notClick();
+        return true;
     }
 
     @Override
