@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 public class Eisel {
     private Vector2 position;
     private Vector2 velocity;
-    private Vector2 acceleration;
 
     private int height = 701;
     private int width = 150;
@@ -20,20 +19,21 @@ public class Eisel {
     public Eisel(float halfWidth, float screenHeight){
         position = new Vector2(halfWidth,screenHeight);
         velocity = new Vector2(0,0);
-        acceleration = new Vector2(200,0);
         boundingRect = new Rectangle();
     }
 
     public void update(float delta){
-        if (isMoving()){
-            velocity.add(acceleration.cpy().scl(delta));
-            position.add(velocity.cpy().scl(delta));
+        int Swidth = Gdx.graphics.getWidth();
+        if (isMoving() && Gdx.input.getX() <Swidth/2){  //move forward
+            position.sub(velocity.cpy().scl(delta));
         }
-
+        else if (isMoving() && Gdx.input.getX() > Swidth/2){
+            position.sub(velocity.cpy().scl(delta));
+        }
     }
 
     public boolean isMoving(){
-        boolean moving = velocity.x > 0;
+        boolean moving = (velocity.x > 0) || (velocity.x < 0);
         if (moving){
             width = 382;
         }
@@ -47,12 +47,12 @@ public class Eisel {
         velocity.x = 0;
     }
     public void onClick(int cursorX){
-        int width = Gdx.graphics.getWidth();
-        if (cursorX < width/2){
-            velocity.x = -200;
+        int Swidth = Gdx.graphics.getWidth();
+        if (cursorX < Swidth/2){
+            velocity.x = 400;
         }
-        else if (cursorX > width/2){
-            velocity.x = 200;
+        else if (cursorX > Swidth/2){
+            velocity.x = -400;
         }
     }
 
