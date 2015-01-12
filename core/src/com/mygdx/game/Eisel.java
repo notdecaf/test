@@ -49,10 +49,10 @@ public class Eisel {
     public void onClick(int cursorX){
         int width = Gdx.graphics.getWidth();
         if (cursorX < width/2){
-            velocity.x = 200;
+            velocity.x = -200;
         }
         else if (cursorX > width/2){
-            velocity.x = -200;
+            velocity.x = 200;
         }
     }
 
