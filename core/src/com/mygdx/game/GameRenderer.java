@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -60,12 +61,17 @@ public class GameRenderer {
 
         batch.begin();
         if (eisel.isMoving()){
-            batch.draw(AssetLoader.eiselWalk.getKeyFrame(runtime,true),0,0);
+            batch.draw(AssetLoader.eiselWalk.getKeyFrame(runtime,true),eisel.getPosition().x,0);
         }
         else {
-            batch.draw(AssetLoader.eiselIdle.getKeyFrame(runtime,true),0,0);
+            batch.draw(AssetLoader.eiselIdle.getKeyFrame(runtime,true),eisel.getPosition().x,0);
         }
 
         batch.end();
+
+        shapeRenderer.begin(ShapeType.Filled);
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.rect(eisel.getBoundingRect().x,eisel.getBoundingRect().y,eisel.getWidth(),eisel.getHeight());
+        shapeRenderer.end();
     }
 }

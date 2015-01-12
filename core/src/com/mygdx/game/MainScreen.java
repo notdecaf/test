@@ -20,7 +20,7 @@ public class MainScreen implements Screen {
         float gameWidth = screenWidth;
         float gameHeight = screenHeight;
 
-        world = new GameWorld((int)(gameHeight/2));
+        world = new GameWorld((int)(gameWidth/2));
         renderer = new GameRenderer(world);
         Gdx.input.setInputProcessor(new InputHandler(world.getEisel()));
     }

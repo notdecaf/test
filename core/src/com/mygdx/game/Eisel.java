@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -11,14 +12,15 @@ public class Eisel {
     private Vector2 acceleration;
 
     private int height = 701;
-    private int width;
+    private int width = 150;
 
-    public Eisel(float x, float y, int height, int width){
-        this.height = height;
-        this.width = width;
+    private Rectangle boundingRect;
+
+    public Eisel(float x, float y){
         position = new Vector2(x,y);
         velocity = new Vector2(0,0);
-        acceleration = new Vector2(0,460);
+        acceleration = new Vector2(200,0);
+        boundingRect = new Rectangle();
     }
 
     public void update(float delta){
@@ -30,7 +32,14 @@ public class Eisel {
     }
 
     public boolean isMoving(){
-        return (velocity.x > 0);
+        boolean moving = velocity.x > 0;
+        if (moving){
+            width = 382;
+        }
+        else {
+            width = 150;
+        }
+        return moving;
     }
 
     public void notClick(){
@@ -54,5 +63,11 @@ public class Eisel {
 
     public float getHeight(){
         return height;
+    }
+
+    public Vector2 getPosition() { return position; }
+
+    public Rectangle getBoundingRect() {
+        return boundingRect;
     }
 }

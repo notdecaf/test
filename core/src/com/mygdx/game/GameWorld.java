@@ -11,7 +11,7 @@ public class GameWorld {
     private Eisel eisel;
 
     public GameWorld(int midPointX){
-        eisel = new Eisel(midPointX,Gdx.graphics.getHeight(),500,700);
+        eisel = new Eisel(midPointX,Gdx.graphics.getHeight());
     }
 
     public void update(float delta){
