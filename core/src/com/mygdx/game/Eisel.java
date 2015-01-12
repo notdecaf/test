@@ -24,11 +24,11 @@ public class Eisel {
     }
 
     public void update(float delta){
-        velocity.add(acceleration.cpy().scl(delta));
-        if (velocity.y > 200){
-            velocity.y = 200;
+        if (isMoving()){
+            velocity.add(acceleration.cpy().scl(delta));
+            position.add(velocity.cpy().scl(delta));
         }
-        position.add(velocity.cpy().scl(delta));
+
     }
 
     public boolean isMoving(){
@@ -46,7 +46,7 @@ public class Eisel {
         velocity.x = 0;
     }
     public void onClick(){
-        velocity.x += 40;
+        velocity.x = 200;
     }
 
     public float getX(){
