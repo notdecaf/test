@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -45,8 +46,14 @@ public class Eisel {
     public void notClick(){
         velocity.x = 0;
     }
-    public void onClick(){
-        velocity.x = 200;
+    public void onClick(int cursorX){
+        int width = Gdx.graphics.getWidth();
+        if (cursorX < width/2){
+            velocity.x = 200;
+        }
+        else if (cursorX > width/2){
+            velocity.x = -200;
+        }
     }
 
     public float getX(){
