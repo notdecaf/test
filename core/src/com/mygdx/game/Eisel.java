@@ -16,8 +16,8 @@ public class Eisel {
 
     private Rectangle boundingRect;
 
-    public Eisel(float x, float y){
-        position = new Vector2(x,y);
+    public Eisel(float halfWidth, float screenHeight){
+        position = new Vector2(halfWidth,screenHeight);
         velocity = new Vector2(0,0);
         acceleration = new Vector2(200,0);
         boundingRect = new Rectangle();

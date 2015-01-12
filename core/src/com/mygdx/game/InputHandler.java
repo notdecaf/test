@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
 /**
@@ -7,6 +8,7 @@ import com.badlogic.gdx.InputProcessor;
  */
 public class InputHandler implements InputProcessor{
     private Eisel eisel;
+    int activeTouch = 0;
 
     public InputHandler(Eisel eisel){
         this.eisel = eisel;
@@ -29,12 +31,17 @@ public class InputHandler implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            if (Gdx.app.getInput().isTouched(activeTouch)){
+                activeTouch++;
+                Gdx.app.log("InputHandler","activeTouch: " + activeTouch);
+            }
         eisel.onClick();
         return true;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        activeTouch = 0;
         eisel.notClick();
         return true;
     }
