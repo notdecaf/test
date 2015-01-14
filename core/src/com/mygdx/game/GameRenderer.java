@@ -19,6 +19,8 @@ public class GameRenderer {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private Eisel eisel;
+    private Ball [] balls = new Ball[10];
+    private int numofBalls = 0;
 
     private Animation eiselIdle;
     private Animation eiselWalk;
@@ -42,6 +44,15 @@ public class GameRenderer {
         eisel = world.getEisel();
         eiselIdle = AssetLoader.eiselIdle;
         eiselWalk = AssetLoader.eiselWalk;
+    }
+
+    private Ball spawnBalls(float runtime){
+        if (runtime/20 == 0 && (numofBalls < 10)){
+            balls[numofBalls] = new Ball();
+            numofBalls++;
+            return balls[numofBalls-1];
+        }
+        else return null;
     }
 
     public void render(float runtime){

@@ -9,9 +9,11 @@ import com.badlogic.gdx.math.Rectangle;
 public class GameWorld {
 
     private Eisel eisel;
+    private Ball ball;
 
     public GameWorld(int midPointX){
         eisel = new Eisel(midPointX,Gdx.graphics.getHeight());
+        ball = new Ball();
     }
 
     public void update(float delta){

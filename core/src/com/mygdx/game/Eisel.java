@@ -23,11 +23,11 @@ public class Eisel {
     }
 
     public void update(float delta){
-        int Swidth = Gdx.graphics.getWidth();
-        if (isMoving() && Gdx.input.getX() <Swidth/2){  //move forward
+        if (isMoving() && InputHandler.activeTouch == 2){
             position.sub(velocity.cpy().scl(delta));
         }
-        else if (isMoving() && Gdx.input.getX() > Swidth/2){
+        else //(isMoving())
+        {  //move forward
             position.sub(velocity.cpy().scl(delta));
         }
     }
@@ -48,11 +48,15 @@ public class Eisel {
     }
     public void onClick(int cursorX){
         int Swidth = Gdx.graphics.getWidth();
-        if (cursorX < Swidth/2){
-            velocity.x = 400;
+        if (InputHandler.activeTouch == 2){
+            velocity.y = 400;
         }
-        else if (cursorX > Swidth/2){
-            velocity.x = -400;
+        else {
+            if (cursorX < Swidth / 2) {
+                velocity.x = 400;
+            } else if (cursorX > Swidth / 2) {
+                velocity.x = -400;
+            }
         }
     }
 

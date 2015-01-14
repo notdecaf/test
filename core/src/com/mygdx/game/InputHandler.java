@@ -8,7 +8,7 @@ import com.badlogic.gdx.InputProcessor;
  */
 public class InputHandler implements InputProcessor{
     private Eisel eisel;
-    int activeTouch = 0;
+    static int activeTouch = 0;
 
     public InputHandler(Eisel eisel){
         this.eisel = eisel;
@@ -33,7 +33,6 @@ public class InputHandler implements InputProcessor{
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
             if (Gdx.app.getInput().isTouched(activeTouch)){
                 activeTouch++;
-                Gdx.app.log("InputHandler","activeTouch: " + activeTouch);
             }
         eisel.onClick(Gdx.input.getX());
         return true;
